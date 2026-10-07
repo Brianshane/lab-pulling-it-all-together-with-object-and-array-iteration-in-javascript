@@ -114,3 +114,89 @@ function gameObject() {
         },
     };
 }
+function numPointsScored(playerName) {
+        var game = gameObject();
+        var teams = Object.keys(game);
+
+        for (var i = 0; i < teams.length; i++) {
+            var players = game[teams[i]].players;
+            if (players[playerName]) {
+                return players[playerName].points;
+            }
+        }
+    }
+ function shoeSize(playerName) {
+        var game = gameObject();
+        var teams = Object.keys(game);
+
+        for (var i = 0; i < teams.length; i++) {
+            var players = game[teams[i]].players;
+            if (players[playerName]) {
+                return players[playerName].shoe;
+            }
+        }
+    }function teamColors(teamName) {
+        var game = gameObject();
+        var teams = Object.keys(game);
+
+        for (var i = 0; i < teams.length; i++) {
+            if (game[teams[i]].teamName === teamName) {
+                return game[teams[i]].colors;
+            }
+        }
+    }
+ function teamNames() {
+        var game = gameObject();
+        var teams = Object.keys(game);
+        return teams.map(function (team) {
+            return game[team].teamName;
+        });
+    }
+
+    function playerNumbers(teamName) {
+        var game = gameObject();
+        var teams = Object.keys(game);
+
+        for (var i = 0; i < teams.length; i++) {
+            var team = game[teams[i]];
+            if (team.teamName === teamName) {
+                return Object.keys(team.players).map(function (player) {
+                    return team.players[player].number;
+                });
+            }
+        }
+    }
+
+    function playerStats(playerName) {
+        var game = gameObject();
+        var teams = Object.keys(game);
+
+        for (var i = 0; i < teams.length; i++) {
+            var players = game[teams[i]].players;
+            if (players[playerName]) {
+                return players[playerName];
+            }
+        }
+    }
+
+    function bigShoeRebounds() {
+        var game = gameObject();
+        var teams = Object.keys(game);
+        var largestShoe = 0;
+        var rebounds = 0;
+
+        for (var i = 0; i < teams.length; i++) {
+            var players = game[teams[i]].players;
+            var playerNames = Object.keys(players);
+
+            for (var j = 0; j < playerNames.length; j++) {
+                var player = players[playerNames[j]];
+                if (player.shoe > largestShoe) {
+                    largestShoe = player.shoe;
+                    rebounds = player.rebounds;
+                }
+            }
+        }
+
+        return rebounds;
+    }
